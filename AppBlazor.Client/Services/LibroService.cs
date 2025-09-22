@@ -48,6 +48,28 @@ namespace AppBlazor.Client.Services
                 nombreJefe = "Luis Almiron",
                 Ventas = 8500.00
             });
+            lista.Add(new LibroListCLS
+            {
+                NroEmpleado = 3,
+                Nombre = "Julian Mendoza",
+                Edad = 30,
+                Cargo = "Junior",
+                FechaContrato = new DateTime(2023, 5, 8),
+                nombreSucursal = "Santa Cruz",
+                nombreJefe = "Luis Almiron",
+                Ventas = 2500.00
+            });
+            lista.Add(new LibroListCLS
+            {
+                NroEmpleado = 4,
+                Nombre = "Gabriel Jesus",
+                Edad = 21,
+                Cargo = "Senior",
+                FechaContrato = new DateTime(2024, 3, 9),
+                nombreSucursal = "Tarija",
+                nombreJefe = "Antonio Cardenas",
+                Ventas = 10500.00
+            });
         }
         public List<LibroListCLS> listarlibros() {
             return lista;
@@ -101,6 +123,21 @@ namespace AppBlazor.Client.Services
                 return listafiltrada;
             }
         }
+
+
+        public int obtenerIdRepresentante(string nombreRepresentante)
+        {
+            var obj = lista
+                .FirstOrDefault(p => p.Nombre.Equals(nombreRepresentante, StringComparison.OrdinalIgnoreCase));
+
+            return obj == null ? 0 : obj.NroEmpleado;
+        }
+        public string obtenerNombreRepresentante(int idRepresentante)
+        {
+            var obj = lista.FirstOrDefault(p => p.NroEmpleado == idRepresentante);
+            return obj == null ? "" : obj.Nombre;
+        }
+
 
     }
 }
